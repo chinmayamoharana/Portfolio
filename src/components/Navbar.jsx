@@ -15,21 +15,23 @@ export default function Navbar() {
   }, []);
 
   const navLinkStyle = ({ isActive }) =>
-    `relative px-3 py-2 font-medium transition duration-300 ${isActive
-      ? "text-blue-400"
-      : "text-gray-200 hover:text-blue-400"
+    `relative px-3 py-2 font-medium transition duration-300 ${
+      isActive
+        ? "text-blue-400"
+        : "text-gray-200 hover:text-blue-400"
     }`;
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled
           ? "bg-black/70 backdrop-blur-xl shadow-lg"
           : "bg-transparent"
-        }`}
+      }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-        {/* ✅ Logo Image Instead of Text */}
+        {/* Logo */}
         <Link to="/">
           <motion.img
             src="/LOGO.png"
@@ -37,26 +39,26 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
             className="h-12 md:h-14 w-auto object-contain rounded
-    drop-shadow-lg 
-    [image-rendering:auto] 
-    cursor-pointer"
+            drop-shadow-lg 
+            [image-rendering:auto] 
+            cursor-pointer"
           />
         </Link>
-
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
 
-          {["/", "/about", "/skills", "/projects", "/contact"].map((path, index) => {
-            const names = ["Home", "About", "Skills", "Projects", "Contact"];
+          {["/", "/about", "/skills", "/projects", "/experience", "/contact"].map((path, index) => {
+            const names = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
             return (
               <NavLink key={index} to={path} className={navLinkStyle}>
                 {({ isActive }) => (
                   <span className="relative group">
                     {names[index]}
                     <span
-                      className={`absolute left-0 -bottom-1 h-[2px] bg-blue-400 transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"
-                        }`}
+                      className={`absolute left-0 -bottom-1 h-[2px] bg-blue-400 transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
                     ></span>
                   </span>
                 )}
@@ -96,6 +98,7 @@ export default function Navbar() {
             <Link to="/about" onClick={() => setOpen(false)}>About</Link>
             <Link to="/skills" onClick={() => setOpen(false)}>Skills</Link>
             <Link to="/projects" onClick={() => setOpen(false)}>Projects</Link>
+            <Link to="/experience" onClick={() => setOpen(false)}>Experience</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
 
             <a
