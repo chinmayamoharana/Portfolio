@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Home from './components/Home';
 import Experience from "./components/Experience";
+import Education from './components/Education';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/experience" element={<Experience />} />
+        <Route path="/education" element={<Education/>} />
       </Routes>
       <Footer />    </div>
 
