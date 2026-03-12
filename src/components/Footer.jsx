@@ -28,21 +28,22 @@ export default function Footer() {
         </div>
 
         {/* Quick Links */}
+        {/* Quick Links */}
         <div className="text-center">
           <h3 className="text-white font-semibold mb-4 tracking-wide">
             Quick Links
           </h3>
-          <ul className="space-y-3">
+
+          <ul className="grid grid-cols-2 gap-y-3 gap-x-6 justify-center">
             {[
               { name: "Home", path: "/" },
               { name: "About", path: "/about" },
+              { name: "Skills", path: "/skills" },
               { name: "Projects", path: "/projects" },
               { name: "Contact", path: "/contact" },
               { name: "Experience", path: "/experience" },
               { name: "Education", path: "/education" },
-
-
-              
+              { name: "Blogs", path: "/blogs" },
 
             ].map((link, index) => (
               <li key={index}>
@@ -84,7 +85,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.instagram.com/chinmaya._.moharana/"
+              href=" https://www.instagram.com/mr_chinmaya_22/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 hover:scale-125 transition-all duration-300"

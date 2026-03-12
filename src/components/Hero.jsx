@@ -87,7 +87,7 @@ export default function Hero() {
             <FaLinkedin className="hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
           </a>
 
-          <a href="https://www.instagram.com/chinmaya._.moharana/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/mr_chinmaya_22/" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
           </a>
         </div>

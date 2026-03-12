@@ -48,8 +48,8 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
 
-          {["/", "/about", "/skills", "/projects", "/experience", "/contact"].map((path, index) => {
-            const names = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
+          {["/", "/about", "/skills", "/projects", "/experience", "/contact","/blogs"].map((path, index) => {
+            const names = ["Home", "About", "Skills", "Projects", "Experience", "Contact","Blogs"];
             return (
               <NavLink key={index} to={path} className={navLinkStyle}>
                 {({ isActive }) => (
@@ -100,6 +100,8 @@ export default function Navbar() {
             <Link to="/projects" onClick={() => setOpen(false)}>Projects</Link>
             <Link to="/experience" onClick={() => setOpen(false)}>Experience</Link>
             <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
+            <Link to="/blogs" onClick={() => setOpen(false)}>Blogs</Link>
+
 
             <a
               href="/resume.pdf"

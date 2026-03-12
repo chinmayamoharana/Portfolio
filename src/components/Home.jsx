@@ -5,16 +5,17 @@ import Projects from "./Projects";
 import Contact from "./Contact";
 import Experience from "./Experience";
 import Education from "./Education";
+import Blogs from "./Blogs";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <About />
-      <Education/>
+      <Education />
       <Skills />
       <Experience />
-
+      <Blogs />
       <Projects />
       <Contact />
     </>

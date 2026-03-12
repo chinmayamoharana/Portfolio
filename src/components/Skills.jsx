@@ -7,9 +7,22 @@ import {
   FaNodeJs,
   FaBootstrap,
   FaPython,
+  FaGithub,
 } from "react-icons/fa";
+
 import { DiMysql } from "react-icons/di";
-import { SiTailwindcss, SiDjango, SiMongodb, SiExpress } from "react-icons/si";
+
+import {
+  SiTailwindcss,
+  SiDjango,
+  SiMongodb,
+  SiExpress,
+  SiPostman,
+  SiVercel,
+  SiNetlify,
+  SiRender
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
 import { motion } from "framer-motion";
 
 export default function Skills() {
@@ -39,7 +52,13 @@ export default function Skills() {
       skills: [
         { icon: <SiMongodb />, name: "MongoDB", color: "text-green-500" },
         { icon: <DiMysql />, name: "MySQL", color: "text-blue-600" },
-        { icon: <FaGitAlt />, name: "Git & GitHub", color: "text-red-500" },
+        { icon: <FaGitAlt />, name: "Git", color: "text-red-500" },
+        { icon: <FaGithub />, name: "GitHub", color: "text-gray-300" },
+        { icon: <SiPostman />, name: "Postman", color: "text-orange-500" },
+        { icon: <VscVscode />, name: "VS Code", color: "text-blue-400" },
+        { icon: <SiVercel />, name: "Vercel", color: "text-white" },
+        { icon: <SiNetlify />, name: "Netlify", color: "text-green-400" },
+        { icon: <SiRender />, name: "Render", color: "text-purple-400" },
       ],
     },
   ];
@@ -56,10 +75,11 @@ export default function Skills() {
         className="text-center mb-16"
       >
         <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-          Technical Skills
+          Technical Skills & Tools
         </h2>
+
         <p className="text-gray-400 mt-4 text-lg">
-          Technologies I use to build scalable applications
+          Technologies and tools I use to build scalable applications
         </p>
       </motion.div>
 
@@ -84,10 +104,11 @@ export default function Skills() {
                   className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center
                   hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
                 >
-                  {/* Glow Effect */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition duration-300 blur-xl"></div>
 
-                  <div className={`text-5xl mb-4 ${skill.color} group-hover:scale-110 transition-transform duration-300`}>
+                  <div
+                    className={`text-5xl mb-4 ${skill.color} group-hover:scale-110 transition-transform duration-300`}
+                  >
                     {skill.icon}
                   </div>
 
