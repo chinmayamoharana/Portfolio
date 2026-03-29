@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Projects() {
+
+  const [showAll, setShowAll] = useState(false);
 
   const projects = [
     {
@@ -51,12 +54,25 @@ export default function Projects() {
       description:
         "ATS resume analyzer with keyword extraction and scoring system using Django backend."
     },
+
+    // ✅ NEW PROJECT (HIGH VALUE)
+    {
+      img: "/project7.png",
+      title: "Kanban Board Application",
+      tech: "React.js, Django REST Framework, WebSockets, Tailwind CSS",
+      github: "https://github.com/chinmayamoharana?tab=repositories",
+      description:
+        "Developed a full-stack Kanban Board with drag-and-drop task management, JWT authentication, and real-time updates using WebSockets for collaborative workflow management."
+    },
   ];
+
+  // ✅ Show only 6 initially
+  const visibleProjects = showAll ? projects : projects.slice(0, 6);
 
   return (
     <section className="relative py-28 px-6 md:px-12 overflow-hidden bg-gradient-to-br from-white via-blue-50 to-white dark:from-black dark:via-gray-900 dark:to-black">
 
-      {/* Background Glow Effect */}
+      {/* Background Glow */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-400 opacity-20 blur-3xl rounded-full animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-400 opacity-20 blur-3xl rounded-full animate-pulse"></div>
 
@@ -76,7 +92,7 @@ export default function Projects() {
 
       {/* Project Grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
-        {projects.map((p, i) => (
+        {visibleProjects.map((p, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 60 }}
@@ -120,6 +136,17 @@ export default function Projects() {
           </motion.div>
         ))}
       </div>
+
+      {/* ✅ Show More / Show Less Button */}
+      <div className="text-center mt-12">
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+        >
+          {showAll ? "Show Less ↑" : "Show More ↓"}
+        </button>
+      </div>
+
     </section>
   );
 }
