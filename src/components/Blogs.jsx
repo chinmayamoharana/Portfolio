@@ -1,11 +1,29 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Blogs() {
 
-    const [openBlogs, setOpenBlogs] = useState([]);
+    const [openBlogs, setOpenBlogs] = useState({});
+    const [showAllBlogs, setShowAllBlogs] = useState(false);
 
     const blogs = [
+        {
+            title: "JWT Authentication in React and Django REST Framework",
+            preview:
+                "JWT authentication is one of the most common ways to secure modern full-stack applications built with React and Django REST Framework.",
+            content: `
+JWT authentication is widely used in full-stack applications because it provides a secure and scalable way to manage user sessions between frontend and backend systems.
+
+In a React and Django REST Framework setup, the Django backend usually handles user login and returns an access token and, in many cases, a refresh token. The React frontend stores the token safely and sends it in the Authorization header when requesting protected API endpoints.
+
+One of the major advantages of JWT is that it supports stateless authentication. The server does not need to store session data for every logged-in user, which makes the architecture more scalable for larger applications.
+
+In practical projects, JWT authentication is often combined with role-based access control so different users can access different parts of the system. For example, an admin may manage users and reports, while a viewer may only read dashboard data.
+
+To build JWT authentication properly, developers must also think about token expiration, refresh logic, route protection, and secure API access. When implemented correctly, React and Django REST Framework create a strong and production-ready authentication flow for dashboards, portals, and business applications.
+`,
+            tech: "React, Django REST Framework, JWT"
+        },
         {
             title: "Building REST APIs with Django REST Framework",
             preview:
@@ -69,6 +87,8 @@ This architecture is widely used in dashboards, SaaS platforms, and e-commerce s
         }
     ];
 
+    const visibleBlogs = showAllBlogs ? blogs : blogs.slice(0, 4);
+
     return (
         <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-gray-950 via-black to-gray-900 text-white">
 
@@ -90,45 +110,66 @@ This architecture is widely used in dashboards, SaaS platforms, and e-commerce s
             </motion.div>
 
             {/* Blog Cards */}
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-
-                {blogs.map((blog, index) => (
-                    <motion.div
-                        layout
-                        key={index}
-                        className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg"
-                    >
-
-                        <h3 className="text-2xl font-semibold text-blue-400 mb-3">
-                            {blog.title}
-                        </h3>
-
-                        <p className={`text-gray-400 mb-4 ${openBlogs[index] ? "" : "line-clamp-3"}`}>
-                            {openBlogs[index] ? blog.content : blog.preview}
-                        </p>
-                        <button
-                            onClick={() =>
-                                setOpenBlogs((prev) => {
-                                    const updated = [...prev];
-                                    updated[index] = !updated[index];
-                                    return updated;
-                                })
-                            }
-                            className="text-blue-400 font-semibold hover:text-cyan-400 transition"
+            <motion.div layout className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+                <AnimatePresence initial={false}>
+                    {visibleBlogs.map((blog) => (
+                        <motion.div
+                            layout
+                            key={blog.title}
+                            initial={{ opacity: 0, y: 24 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -16 }}
+                            transition={{ duration: 0.35, ease: "easeOut" }}
+                            className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg"
                         >
-                            {openBlogs[index] ? "Read Less" : "Read More"}
-                        </button>
 
-                        <div className="mt-4">
-                            <span className="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full">
-                                {blog.tech}
-                            </span>
-                        </div>
+                            <h3 className="text-2xl font-semibold text-blue-400 mb-3">
+                                {blog.title}
+                            </h3>
 
-                    </motion.div>
-                ))}
+                            <motion.div layout className="overflow-hidden">
+                                <motion.p
+                                    layout
+                                    transition={{ layout: { duration: 0.35, ease: "easeInOut" } }}
+                                    className={`text-gray-400 mb-4 whitespace-pre-line ${openBlogs[blog.title] ? "" : "line-clamp-3"}`}
+                                >
+                                    {openBlogs[blog.title] ? blog.content.trim() : blog.preview}
+                                </motion.p>
+                            </motion.div>
 
-            </div>
+                            <button
+                                onClick={() =>
+                                    setOpenBlogs((prev) => ({
+                                        ...prev,
+                                        [blog.title]: !prev[blog.title],
+                                    }))
+                                }
+                                className="text-blue-400 font-semibold hover:text-cyan-400 transition"
+                            >
+                                {openBlogs[blog.title] ? "Hide" : "Show More"}
+                            </button>
+
+                            <div className="mt-4">
+                                <span className="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full">
+                                    {blog.tech}
+                                </span>
+                            </div>
+
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </motion.div>
+
+            {blogs.length > 4 && (
+                <div className="text-center mt-12">
+                    <button
+                        onClick={() => setShowAllBlogs(!showAllBlogs)}
+                        className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+                    >
+                        {showAllBlogs ? "Show Less Blogs" : "Show More Blogs"}
+                    </button>
+                </div>
+            )}
         </section>
     );
 }

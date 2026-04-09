@@ -15,6 +15,14 @@ export default function Projects() {
         "Full-stack Job Portal with JWT authentication, REST APIs, MongoDB Atlas integration, and role-based dashboards."
     },
     {
+      img: "/image.png",
+      title: "Finance Dashboard System",
+      tech: "React.js, Django, Django REST Framework, MySQL, JWT, RBAC, Recharts, Tailwind CSS, Axios",
+      github: "https://github.com/chinmayamoharana?tab=repositories",
+      description:
+        "Built a scalable full-stack finance dashboard with JWT authentication, role-based access for Admin, Analyst, and Viewer users, interactive charts, monthly summaries, budget alerts, admin controls, and optimized reporting APIs."
+    },
+    {
       img: "/project2.png",
       title: "URL Shortener",
       tech: "MERN Stack (MongoDB, Express, React, Node.js)",
