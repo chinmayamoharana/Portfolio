@@ -8,6 +8,25 @@ export default function Blogs() {
 
     const blogs = [
         {
+            title: "Authentication, Authorization, and Session Management in Modern Web Apps",
+            preview:
+                "Authentication, authorization, and session management work together to keep modern web applications secure and user-specific.",
+            content: `
+Authentication, authorization, and session management are closely related but they solve different problems in a web application.
+
+Authentication answers the question, "Who are you?" It verifies a user's identity through methods like email and password login, token-based authentication, OTP, or social sign-in.
+
+Authorization answers the question, "What are you allowed to do?" After a user is authenticated, the system checks whether they can access a route, perform an action, or view certain data. This is where concepts like role-based access control become important.
+
+Session management keeps track of a user's state across requests. In traditional applications, this is often handled using server-side sessions. In modern SPA and API-driven apps, session state is commonly managed with JWT access tokens, refresh tokens, or secure cookies.
+
+A good implementation needs more than just login logic. Developers should think about token expiration, logout behavior, protected routes, refresh flows, and secure storage. Sensitive data should never be exposed to unauthorized users, and session handling should always be designed with security in mind.
+
+For full-stack apps built with React and Django REST Framework, a strong security flow usually combines authentication for identity, authorization for permissions, and session management for continuity. Together, these three layers create a reliable and scalable user experience.
+`,
+            tech: "Security, React, Django REST Framework"
+        },
+        {
             title: "JWT Authentication in React and Django REST Framework",
             preview:
                 "JWT authentication is one of the most common ways to secure modern full-stack applications built with React and Django REST Framework.",
