@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function Experience() {
   const experienceData = [
@@ -19,19 +19,19 @@ export default function Experience() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-black text-white">
-      <motion.h2
+    <section className="py-20 px-6 bg-black/46 text-white">
+      <Motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
       >
         Professional Experience
-      </motion.h2>
+      </Motion.h2>
 
       <div className="max-w-5xl mx-auto space-y-10">
         {experienceData.map((exp, index) => (
-          <motion.div
+          <Motion.div
             key={index}
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export default function Experience() {
             <p className="mt-4 text-gray-300 leading-relaxed text-lg">
               {exp.description}
             </p>
-          </motion.div>
+          </Motion.div>
         ))}
       </div>
     </section>

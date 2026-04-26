@@ -1,14 +1,14 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="py-24 px-6 md:px-16 bg-gradient-to-b from-black via-gray-950 to-gray-900 text-white relative overflow-hidden">
+    <section className="py-24 px-6 md:px-16 bg-gradient-to-b from-black/52 via-gray-950/40 to-gray-900/54 text-white relative overflow-hidden">
 
       {/* Background Glow */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-500 opacity-20 blur-3xl rounded-full"></div>
 
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -72,7 +72,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </Motion.div>
     </section>
   );
 }

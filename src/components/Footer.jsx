@@ -1,15 +1,15 @@
 import { FaGithub, FaLinkedin, FaInstagram, FaArrowUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-black via-gray-950 to-black text-gray-300 pt-16 pb-8 px-6 md:px-12 overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-black/56 via-gray-950/44 to-black/56 text-gray-300 pt-16 pb-8 px-6 md:px-12 overflow-hidden">
 
       {/* Top Glow Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 blur-3xl -z-10"></div>
 
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -104,7 +104,7 @@ export default function Footer() {
             </a>
           </p>
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* Divider */}
       <div className="border-t border-white/10 mt-12 pt-6 text-center text-gray-500 text-sm">

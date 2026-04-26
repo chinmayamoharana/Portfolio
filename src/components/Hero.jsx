@@ -1,19 +1,19 @@
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between 
     px-6 md:px-16 pt-24 md:pt-28 
-    bg-gradient-to-br from-black via-gray-900 to-blue-950 text-white overflow-hidden">
+    bg-gradient-to-br from-black/58 via-gray-900/46 to-blue-950/60 text-white overflow-hidden">
 
       {/* Soft Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 -z-10"></div>
 
       {/* LEFT CONTENT */}
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -91,10 +91,10 @@ export default function Hero() {
             <FaInstagram className="hover:text-blue-400 hover:scale-125 transition-all duration-300 cursor-pointer" />
           </a>
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* RIGHT IMAGE */}
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, x: 60 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
@@ -105,7 +105,7 @@ export default function Hero() {
         bg-blue-500 opacity-20 blur-3xl animate-pulse"></div>
 
         {/* Profile Image */}
-        <motion.div
+        <Motion.div
           animate={{ y: [0, -15, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
           className="w-48 h-48 sm:w-60 sm:h-60 md:w-80 md:h-80 
@@ -117,8 +117,8 @@ export default function Hero() {
             className="w-full h-full object-cover rounded-full"
             alt="Profile"
           />
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 }

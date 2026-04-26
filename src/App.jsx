@@ -1,36 +1,58 @@
-import React from 'react'
-import './App.css'
-import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Suspense, lazy, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Home from './components/Home';
-import Experience from "./components/Experience";
-import Education from './components/Education';
-import Blogs from './components/Blogs';
+
+const Home = lazy(() => import("./components/Home"));
+const About = lazy(() => import("./components/About"));
+const Skills = lazy(() => import("./components/Skills"));
+const Projects = lazy(() => import("./components/Projects"));
+const Contact = lazy(() => import("./components/Contact"));
+const Experience = lazy(() => import("./components/Experience"));
+const Education = lazy(() => import("./components/Education"));
+const Blogs = lazy(() => import("./components/Blogs"));
+const ProjectCaseStudy = lazy(() => import("./components/ProjectCaseStudy"));
+const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
+const CursorGlow = lazy(() => import("./components/CursorGlow"));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   return (
-    <div className="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-500">
-      <Navbar />
+    <div className="app-shell text-black dark:text-white transition-colors duration-500">
+      <ScrollToTop />
+      <Suspense fallback={null}>
+        <ParticleBackground />
+        <CursorGlow />
+      </Suspense>
+      <div className="app-content">
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="/blogs" element={<Blogs/>} />
-
-      </Routes>
-      <Footer />    </div>
-
+        <Suspense fallback={<main className="min-h-screen px-6 py-28 text-white" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/blogs" element={<Blogs />} />
+          </Routes>
+        </Suspense>
+        <Footer />
+      </div>
+    </div>
   );
 }

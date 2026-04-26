@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function Contact() {
   const form = useRef();
@@ -35,9 +35,9 @@ export default function Contact() {
   };
 
   return (
-  <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-950 via-black to-gray-900 text-white px-4 sm:px-6 md:px-12">
+  <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-950/52 via-black/36 to-gray-900/52 text-white px-4 sm:px-6 md:px-12">
 
-    <motion.div
+    <Motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}
@@ -51,9 +51,9 @@ export default function Contact() {
       <p className="text-gray-400 mt-3 sm:mt-4 text-base sm:text-lg">
         Have a project idea or job opportunity? Let’s connect.
       </p>
-    </motion.div>
+    </Motion.div>
 
-    <motion.form
+    <Motion.form
       ref={form}
       onSubmit={sendEmail}
       initial={{ opacity: 0, y: 40 }}
@@ -130,7 +130,7 @@ export default function Contact() {
           {status}
         </p>
       )}
-    </motion.form>
+    </Motion.form>
   </section>
 );
 

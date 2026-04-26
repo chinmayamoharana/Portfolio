@@ -1,40 +1,47 @@
 # Chinmaya Moharana Portfolio
 
-A modern developer portfolio built with React and Vite to showcase projects, technical skills, experience, education, blogs, and contact details in a polished, animated interface.
+A responsive developer portfolio built with React, Vite, Tailwind CSS, and Framer Motion. The site is designed to present projects as case studies, highlight full-stack skills, and provide a polished contact experience for internships, entry-level roles, and freelance opportunities.
 
 ## Overview
 
-This portfolio presents Chinmaya Moharana as a Full Stack Developer with a focus on React, MERN, Django, Python, REST APIs, and scalable application development. The site combines strong visual presentation with smooth motion effects and a responsive layout for desktop and mobile users.
+This portfolio focuses on clear presentation, modern UI, and product-oriented storytelling. It combines animated landing sections, project detail pages, responsive navigation, reusable content blocks, and a contact form into a single personal website.
 
-## Portfolio Sections
+## Features
 
-- Hero section with animated role highlights, social links, and resume access
-- About section with professional summary, core technologies, and quick stats
-- Education section for academic background
-- Skills section covering frontend, backend, databases, and development tools
-- Experience section for internships and professional work
-- Blogs section with expandable technical articles
-- Projects section featuring full-stack and backend applications
-- Contact section with EmailJS-powered message form
+- Responsive homepage with profile-first hero section
+- Dedicated pages for About, Skills, Projects, Experience, Education, Blogs, and Contact
+- Project listing page with polished CTA buttons and GitHub links
+- Dynamic project case study pages using route params
+- Fixed responsive navbar tuned for desktop, tablet, and mobile layouts
+- Framer Motion transitions and reveal effects across the site
+- Particle and cursor glow background effects
+- Resume download links and social profile links
+- Contact form powered by EmailJS
 
-## Highlighted Projects
+## Routes
 
-- Finance Dashboard System: Full-stack financial tracking platform using React.js, Django, Django REST Framework, MySQL, JWT authentication, RBAC, charts, budget alerts, reporting APIs, and admin controls
-- Job Portal: MERN-based application with JWT authentication, REST APIs, MongoDB integration, and role-based dashboards
-- PDF ↔ Word Converter: Django and React document conversion platform with secure file upload handling
-- ATS Resume Checker: Resume analysis tool with keyword extraction and scoring workflow
-- Kanban Board Application: Task management system with drag-and-drop workflows, JWT authentication, and real-time collaboration concepts
+- `/` Home
+- `/about` About
+- `/skills` Skills
+- `/projects` All projects
+- `/projects/:slug` Individual project case study
+- `/experience` Experience
+- `/education` Education
+- `/blogs` Blogs
+- `/contact` Contact
 
 ## Tech Stack
 
 - React 19
 - Vite
 - React Router DOM
-- Tailwind CSS
+- Tailwind CSS 4
 - Framer Motion
 - React Icons
 - React Type Animation
-- Axios
+- Three.js
+- `@react-three/fiber`
+- `@react-three/drei`
 - EmailJS
 
 ## Project Structure
@@ -43,55 +50,91 @@ This portfolio presents Chinmaya Moharana as a Full Stack Developer with a focus
 src/
   App.jsx
   main.jsx
+  data/
+    projects.js
   components/
     About.jsx
     Blogs.jsx
     Contact.jsx
+    CursorGlow.jsx
     Education.jsx
     Experience.jsx
     Footer.jsx
     Hero.jsx
     Home.jsx
+    MagneticButton.jsx
     Navbar.jsx
+    ParticleBackground.jsx
+    ProjectCaseStudy.jsx
     Projects.jsx
     Skills.jsx
+    TiltCard.jsx
+public/
+  LOGO.png
+  Profile.jpeg
+  resume.pdf
+  project*.png
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18 or newer
+- Node.js 18+
 - npm
 
-### Installation
+### Install
 
 ```bash
 npm install
 ```
 
-### Run Locally
+### Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Open the local Vite URL shown in the terminal, usually `http://localhost:5173`.
+Open the local URL shown by Vite, usually `http://localhost:5173`.
 
-## Available Scripts
+### Build for Production
 
-- `npm run dev` starts the development server
-- `npm run build` creates a production build
-- `npm run preview` previews the production build locally
-- `npm run lint` runs ESLint checks
+```bash
+npm run build
+```
 
-## Customization Notes
+### Preview Production Build
 
-- Project cards can be updated in `src/components/Projects.jsx`
-- Portfolio sections are organized as reusable components inside `src/components`
-- Resume and project images are served from the `public` folder
-- The contact form is configured with EmailJS credentials inside `src/components/Contact.jsx`
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Content Management
+
+- Update project data in `src/data/projects.js`
+- Update homepage layout in `src/components/Home.jsx`
+- Update navigation links and tablet/mobile behavior in `src/components/Navbar.jsx`
+- Update all-project cards in `src/components/Projects.jsx`
+- Update project detail layout in `src/components/ProjectCaseStudy.jsx`
+- Replace images, logo, and resume from the `public` folder
+
+## Contact Form Note
+
+The contact page currently uses EmailJS identifiers directly inside `src/components/Contact.jsx`. For a cleaner production setup, move those values to environment variables before deployment.
+
+## Current UI Direction
+
+- Case-study-oriented projects instead of plain portfolio cards
+- Responsive desktop, tablet, and mobile layouts
+- Professional hero section with dedicated profile image panel
+- Stronger CTA styling across home and project pages
 
 ## Purpose
 
-This project is designed to serve as a professional portfolio for internships, placements, freelance opportunities, and full-time developer roles.
+This project is meant to function as a professional portfolio for showcasing engineering ability, frontend polish, and full-stack project work in a way that is easy for recruiters, hiring teams, and collaborators to review.

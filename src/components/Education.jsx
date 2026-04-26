@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 export default function Education() {
 
@@ -24,9 +24,9 @@ export default function Education() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-black text-white">
+    <section className="py-20 px-6 bg-black/46 text-white">
       
-      <motion.h2
+      <Motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -35,12 +35,12 @@ export default function Education() {
         bg-clip-text text-transparent"
       >
         Education
-      </motion.h2>
+      </Motion.h2>
 
       <div className="max-w-5xl mx-auto space-y-10">
 
         {educationData.map((edu, index) => (
-          <motion.div
+          <Motion.div
             key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function Education() {
               {edu.degree}
             </p>
 
-          </motion.div>
+          </Motion.div>
         ))}
 
       </div>

@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -14,8 +14,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navItems = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/skills", label: "Skills" },
+    { to: "/projects", label: "Projects" },
+    { to: "/experience", label: "Experience" },
+    { to: "/contact", label: "Contact" },
+    { to: "/blogs", label: "Blogs" },
+  ];
+
   const navLinkStyle = ({ isActive }) =>
-    `relative px-3 py-2 font-medium transition duration-300 ${
+    `relative px-2 py-2 text-sm font-medium transition duration-300 xl:px-3 ${
       isActive
         ? "text-blue-400"
         : "text-gray-200 hover:text-blue-400"
@@ -29,32 +39,33 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
 
         {/* Logo */}
-        <Link to="/">
-          <motion.img
+        <Link to="/" className="flex min-w-0 items-center gap-3">
+          <Motion.img
             src="/LOGO.png"
             alt="Chinmaya Logo"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="h-12 md:h-14 w-auto object-contain rounded
-            drop-shadow-lg 
-            [image-rendering:auto] 
-            cursor-pointer"
+            className="h-11 w-auto shrink-0 rounded object-contain drop-shadow-lg [image-rendering:auto] sm:h-12 lg:h-14"
           />
+          <div className="hidden min-w-0 sm:block">
+            <p className="truncate text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
+              Chinmaya
+            </p>
+            <p className="truncate text-xs text-slate-300">Full Stack Developer</p>
+          </div>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 items-center">
-
-          {["/", "/about", "/skills", "/projects", "/experience", "/contact","/blogs"].map((path, index) => {
-            const names = ["Home", "About", "Skills", "Projects", "Experience", "Contact","Blogs"];
+        <div className="hidden xl:flex items-center gap-6">
+          {navItems.map(({ to, label }) => {
             return (
-              <NavLink key={index} to={path} className={navLinkStyle}>
+              <NavLink key={to} to={to} className={navLinkStyle}>
                 {({ isActive }) => (
                   <span className="relative group">
-                    {names[index]}
+                    {label}
                     <span
                       className={`absolute left-0 -bottom-1 h-[2px] bg-blue-400 transition-all duration-300 ${
                         isActive ? "w-full" : "w-0 group-hover:w-full"
@@ -69,48 +80,63 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold shadow-md hover:scale-105 hover:shadow-xl transition-all duration-300"
+            className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2 text-white font-semibold shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             Resume
           </a>
         </div>
 
-        {/* Mobile Button */}
-        <button
-          className="md:hidden text-white text-3xl"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? "✕" : "☰"}
-        </button>
+        {/* Tablet / Mobile Actions */}
+        <div className="flex items-center gap-2 xl:hidden">
+          <a
+            href="/resume.pdf"
+            download
+            className="hidden rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-xl sm:inline-flex"
+          >
+            Resume
+          </a>
+
+          <button
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-2xl text-white transition hover:border-cyan-300/40 hover:text-cyan-300"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          >
+            {open ? "✕" : "☰"}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile / Tablet Menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <Motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="md:hidden bg-black/80 backdrop-blur-xl text-white flex flex-col items-center gap-6 py-6"
+            className="xl:hidden border-t border-white/10 bg-black/85 backdrop-blur-xl"
           >
-            <Link to="/" onClick={() => setOpen(false)}>Home</Link>
-            <Link to="/about" onClick={() => setOpen(false)}>About</Link>
-            <Link to="/skills" onClick={() => setOpen(false)}>Skills</Link>
-            <Link to="/projects" onClick={() => setOpen(false)}>Projects</Link>
-            <Link to="/experience" onClick={() => setOpen(false)}>Experience</Link>
-            <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
-            <Link to="/blogs" onClick={() => setOpen(false)}>Blogs</Link>
+            <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 sm:px-6 lg:px-8">
+              {navItems.map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setOpen(false)}
+                  className="rounded-2xl border border-white/5 px-4 py-3 text-white transition hover:border-cyan-300/30 hover:bg-white/5 hover:text-cyan-300"
+                >
+                  {label}
+                </Link>
+              ))}
 
-
-            <a
-              href="/resume.pdf"
-              download
-              className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
-            >
-              Resume
-            </a>
-          </motion.div>
+              <a
+                href="/resume.pdf"
+                download
+                className="mt-2 inline-flex justify-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 text-white font-semibold sm:hidden"
+              >
+                Resume
+              </a>
+            </div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </nav>
