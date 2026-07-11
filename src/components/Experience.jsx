@@ -15,6 +15,13 @@ export default function Experience() {
       duration: "Jan 2025 - June 2025",
       description:
         "Developed a production-ready e-commerce web application using Django, Python, HTML, CSS, and MySQL. Designed secure authentication systems, implemented role-based access control, integrated backend APIs, and managed database schema design. Improved user experience through responsive design and efficient server-side rendering. Gained hands-on experience in full project lifecycle including development, testing, and deployment."
+    },
+    {
+      role: "WEB DEVELOPMENT INTERN",
+      company: "AjursInsights Pvt Ltd",
+      duration: "Apr 2026 – Present",
+      description:
+        "Working on production-level web development tasks involving frontend development, bug fixing, feature implementation, debugging, and maintaining responsive web applications in a real-world development environment."
     }
   ];
 
