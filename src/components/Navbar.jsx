@@ -6,46 +6,46 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const progressRef = useRef(0);
   const rafRef = useRef(null);
 
   useEffect(() => {
     const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const scrollableHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const nextProgress =
-        scrollableHeight > 0 ? (scrollTop / scrollableHeight) * 100 : 0;
-
-      setScrolled(window.scrollY > 40);
-      window.cancelAnimationFrame(rafRef.current);
-
-      if (nextProgress >= progressRef.current) {
-        progressRef.current = nextProgress;
-        setScrollProgress(nextProgress);
+      if (rafRef.current != null) {
         return;
       }
 
-      const animateDown = () => {
-        progressRef.current = Math.max(progressRef.current - 0.6, nextProgress);
-        setScrollProgress(progressRef.current);
+      rafRef.current = window.requestAnimationFrame(() => {
+        const docEl = document.documentElement;
+        const body = document.body;
+        const scrollTop =
+          window.pageYOffset || docEl.scrollTop || body.scrollTop || 0;
+        const scrollHeight = Math.max(
+          body.scrollHeight,
+          docEl.scrollHeight,
+          body.offsetHeight,
+          docEl.offsetHeight,
+          body.clientHeight,
+          docEl.clientHeight
+        );
+        const maxScroll = scrollHeight - window.innerHeight;
+        const nextProgress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
 
-        if (progressRef.current > nextProgress) {
-          rafRef.current = window.requestAnimationFrame(animateDown);
-        }
-      };
-
-      rafRef.current = window.requestAnimationFrame(animateDown);
+        setScrolled(scrollTop > 40);
+        setScrollProgress(nextProgress);
+        rafRef.current = null;
+      });
     };
 
     updateProgress();
-    window.addEventListener("scroll", updateProgress);
+    window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", updateProgress);
 
     return () => {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
-      window.cancelAnimationFrame(rafRef.current);
+      if (rafRef.current != null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
   }, []);
 
@@ -142,9 +142,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-1 w-full bg-white/10">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] overflow-hidden bg-white/20">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 transition-[width] duration-150 ease-out"
+            className="h-full rounded-r-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_12px_rgba(34,211,238,0.45)] transition-[width] duration-150 ease-out will-change-[width]"
             style={{ width: `${scrollProgress}%` }}
           />
         </div>
