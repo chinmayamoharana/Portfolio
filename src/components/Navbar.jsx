@@ -5,35 +5,63 @@ import { motion as Motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const barRef = useRef(null);
+  const scrolledRef = useRef(false);
   const rafRef = useRef(null);
+  const currentProgressRef = useRef(0);
+  const targetProgressRef = useRef(0);
 
   useEffect(() => {
+    const animate = () => {
+      const bar = barRef.current;
+      if (!bar) {
+        rafRef.current = null;
+        return;
+      }
+
+      const current = currentProgressRef.current;
+      const target = targetProgressRef.current;
+      const delta = target - current;
+      const next = Math.abs(delta) < 0.08 ? target : current + delta * 0.16;
+
+      currentProgressRef.current = next;
+      bar.style.width = `${next}%`;
+
+      if (Math.abs(target - next) < 0.05) {
+        rafRef.current = null;
+        return;
+      }
+
+      rafRef.current = window.requestAnimationFrame(animate);
+    };
+
     const updateProgress = () => {
+      const docEl = document.documentElement;
+      const body = document.body;
+      const scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop || 0;
+      const scrollHeight = Math.max(
+        body.scrollHeight,
+        docEl.scrollHeight,
+        body.offsetHeight,
+        docEl.offsetHeight,
+        body.clientHeight,
+        docEl.clientHeight
+      );
+      const maxScroll = scrollHeight - window.innerHeight;
+      const nextProgress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+
+      const nextScrolled = scrollTop > 40;
+      if (scrolledRef.current !== nextScrolled) {
+        scrolledRef.current = nextScrolled;
+        setScrolled(nextScrolled);
+      }
+
+      targetProgressRef.current = nextProgress;
       if (rafRef.current != null) {
         return;
       }
 
-      rafRef.current = window.requestAnimationFrame(() => {
-        const docEl = document.documentElement;
-        const body = document.body;
-        const scrollTop =
-          window.pageYOffset || docEl.scrollTop || body.scrollTop || 0;
-        const scrollHeight = Math.max(
-          body.scrollHeight,
-          docEl.scrollHeight,
-          body.offsetHeight,
-          docEl.offsetHeight,
-          body.clientHeight,
-          docEl.clientHeight
-        );
-        const maxScroll = scrollHeight - window.innerHeight;
-        const nextProgress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
-
-        setScrolled(scrollTop > 40);
-        setScrollProgress(nextProgress);
-        rafRef.current = null;
-      });
+      rafRef.current = window.requestAnimationFrame(animate);
     };
 
     updateProgress();
@@ -142,12 +170,12 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] overflow-hidden bg-white/20">
-          <div
-            className="h-full rounded-r-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_12px_rgba(34,211,238,0.45)] transition-[width] duration-150 ease-out will-change-[width]"
-            style={{ width: `${scrollProgress}%` }}
-          />
-        </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] overflow-hidden bg-white/20">
+        <div
+          ref={barRef}
+          className="h-full w-0 rounded-r-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_12px_rgba(34,211,238,0.45)] will-change-[width]"
+        />
+      </div>
       </div>
 
       {/* Mobile / Tablet Menu */}
