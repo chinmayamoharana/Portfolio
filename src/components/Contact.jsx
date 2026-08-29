@@ -13,126 +13,105 @@ export default function Contact() {
     setStatus("");
 
     emailjs
-      .sendForm(
-        "service_syj8omd",
-        "template_tfoz10f",
-        form.current,
-        {
-          publicKey: "ioTOTr-ink6bPyuAd",
-        }
-      )
+      .sendForm("service_syj8omd", "template_tfoz10f", form.current, {
+        publicKey: "ioTOTr-ink6bPyuAd",
+      })
       .then(
         () => {
-          setStatus("✅ Message sent successfully!");
+          setStatus("Message sent successfully.");
           setLoading(false);
           form.current.reset();
         },
         () => {
-          setStatus("❌ Failed to send. Please try again.");
+          setStatus("Message failed to send. Please try again.");
           setLoading(false);
         }
       );
   };
 
   return (
-  <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-950/52 via-black/36 to-gray-900/52 text-white px-4 sm:px-6 md:px-12">
+    <section className="relative overflow-hidden px-4 py-16 text-white sm:px-6 sm:py-20 md:px-10 lg:px-16 lg:py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_28%),radial-gradient(circle_at_80%_0%,rgba(139,92,246,0.12),transparent_24%)]" />
 
-    <Motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      viewport={{ once: true }}
-      className="text-center"
-    >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-        Contact Me
-      </h2>
-
-      <p className="text-gray-400 mt-3 sm:mt-4 text-base sm:text-lg">
-        Have a project idea or job opportunity? Let’s connect.
-      </p>
-    </Motion.div>
-
-    <Motion.form
-      ref={form}
-      onSubmit={sendEmail}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-      viewport={{ once: true }}
-      className="max-w-xl mx-auto mt-8 sm:mt-10 md:mt-12 
-      bg-white/5 backdrop-blur-xl border border-white/10 
-      p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl 
-      shadow-2xl space-y-6 sm:space-y-8"
-    >
-      {/* Name */}
-      <div>
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Your Name"
-          className="w-full bg-transparent border border-gray-600 
-          p-3 sm:p-4 rounded-lg sm:rounded-xl 
-          text-sm sm:text-base
-          focus:outline-none focus:border-blue-400 
-          transition-all duration-300"
-        />
-      </div>
-
-      {/* Email */}
-      <div>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="Your Email"
-          className="w-full bg-transparent border border-gray-600 
-          p-3 sm:p-4 rounded-lg sm:rounded-xl 
-          text-sm sm:text-base
-          focus:outline-none focus:border-blue-400 
-          transition-all duration-300"
-        />
-      </div>
-
-      {/* Message */}
-      <div>
-        <textarea
-          name="message"
-          rows="4"
-          required
-          placeholder="Your Message"
-          className="w-full bg-transparent border border-gray-600 
-          p-3 sm:p-4 rounded-lg sm:rounded-xl 
-          text-sm sm:text-base
-          focus:outline-none focus:border-blue-400 
-          transition-all duration-300 resize-none"
-        ></textarea>
-      </div>
-
-      {/* Button */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full py-3 sm:py-4 
-        text-sm sm:text-base
-        rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 
-        font-semibold text-white 
-        hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/40 
-        transition-all duration-300 disabled:opacity-50"
+      <Motion.div
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65 }}
+        viewport={{ once: true }}
+        className="relative mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]"
       >
-        {loading ? "Sending..." : "Send Message"}
-      </button>
+        <div className="max-w-xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">Contact</p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">
+            Send a project idea, role opening, or collaboration note.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+            I usually respond quickly to internship and project inquiries. Keep the message short
+            and specific so I can get back with useful context.
+          </p>
 
-      {/* Status Message */}
-      {status && (
-        <p className="text-center text-xs sm:text-sm mt-2 text-gray-300">
-          {status}
-        </p>
-      )}
-    </Motion.form>
-  </section>
-);
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {[
+              { label: "Email", value: "Use the form on this page" },
+              { label: "Focus", value: "Internships and product work" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-[2rem] border border-white/10 bg-black/45 p-5 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-2xl"
+              >
+                <p className="text-xs uppercase tracking-[0.28em] text-slate-400">{item.label}</p>
+                <p className="mt-3 text-lg font-semibold text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-  
+        <Motion.form
+          ref={form}
+          onSubmit={sendEmail}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.15 }}
+          viewport={{ once: true }}
+          className="rounded-[2rem] border border-white/10 bg-black/45 p-6 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:p-8 md:p-10"
+        >
+          <div className="grid gap-5">
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Your Name"
+              className="w-full rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder:text-slate-400 focus:border-cyan-300/50 focus:outline-none"
+            />
+
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Your Email"
+              className="w-full rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder:text-slate-400 focus:border-cyan-300/50 focus:outline-none"
+            />
+
+            <textarea
+              name="message"
+              rows="6"
+              required
+              placeholder="Your Message"
+              className="w-full resize-none rounded-2xl border border-white/10 bg-white/5 p-4 text-white placeholder:text-slate-400 focus:border-cyan-300/50 focus:outline-none"
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-5 py-3 font-semibold text-slate-950 transition duration-300 hover:shadow-[0_0_26px_rgba(56,189,248,0.28)] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+
+            {status && <p className="text-center text-sm text-slate-300">{status}</p>}
+          </div>
+        </Motion.form>
+      </Motion.div>
+    </section>
+  );
 }

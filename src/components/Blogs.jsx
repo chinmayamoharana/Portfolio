@@ -145,79 +145,82 @@ Regardless of the platform chosen, both AWS and Google Cloud enable developers t
   const visibleBlogs = showAllBlogs ? blogs : blogs.slice(0, 4);
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-gray-950/52 via-black/36 to-gray-900/52 text-white">
+    <section className="relative overflow-hidden px-6 py-16 text-white sm:py-20 md:px-10 lg:py-24 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_30%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.12),transparent_24%)]" />
+
       <Motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.65 }}
         viewport={{ once: true }}
-        className="text-center mb-16"
+        className="relative mx-auto max-w-7xl"
       >
-        <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-          Blogs & Articles
-        </h2>
-
-        <p className="text-gray-400 mt-4 text-lg">
-          Sharing insights on backend development and modern web technologies
-        </p>
-      </Motion.div>
-
-      <Motion.div layout className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
-        <AnimatePresence initial={false}>
-          {visibleBlogs.map((blog) => (
-            <Motion.div
-              layout
-              key={blog.title}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="bg-white/5 border border-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-lg"
-            >
-              <h3 className="text-2xl font-semibold text-blue-400 mb-3">{blog.title}</h3>
-
-              <Motion.div layout className="overflow-hidden">
-                <Motion.p
-                  layout
-                  transition={{ layout: { duration: 0.35, ease: "easeInOut" } }}
-                  className={`text-gray-400 mb-4 whitespace-pre-line ${openBlogs[blog.title] ? "" : "line-clamp-3"}`}
-                >
-                  {openBlogs[blog.title] ? blog.content.trim() : blog.preview}
-                </Motion.p>
-              </Motion.div>
-
-              <button
-                onClick={() =>
-                  setOpenBlogs((prev) => ({
-                    ...prev,
-                    [blog.title]: !prev[blog.title],
-                  }))
-                }
-                className="text-blue-400 font-semibold hover:text-cyan-400 transition"
-              >
-                {openBlogs[blog.title] ? "Hide" : "Read More"}
-              </button>
-
-              <div className="mt-4">
-                <span className="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full">
-                  {blog.tech}
-                </span>
-              </div>
-            </Motion.div>
-          ))}
-        </AnimatePresence>
-      </Motion.div>
-
-      {blogs.length > 4 && (
-        <div className="text-center mt-12">
-          <button
-            onClick={() => setShowAllBlogs(!showAllBlogs)}
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
-          >
-            {showAllBlogs ? "Show Less Blogs" : "Show More Blogs"}
-          </button>
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">
+            Blogs & Articles
+          </p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">
+            Notes on backend work, product thinking, and modern web systems.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+            Short essays and longer write-ups on the topics I work with most often.
+          </p>
         </div>
-      )}
+
+        <Motion.div layout className="-mx-6 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0">
+          <AnimatePresence initial={false}>
+            {visibleBlogs.map((blog) => (
+              <Motion.div
+                layout
+                key={blog.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="w-[66%] shrink-0 snap-center rounded-[2rem] border border-white/10 bg-black/45 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:w-[58%] md:w-auto md:min-w-0 md:p-6"
+              >
+                <p className="text-sm uppercase tracking-[0.28em] text-cyan-300/70">
+                  {blog.tech}
+                </p>
+                <h3 className="mt-3 text-xl font-bold leading-tight text-white sm:mt-4 sm:text-2xl">{blog.title}</h3>
+
+                <Motion.div layout className="overflow-hidden">
+                  <Motion.p
+                    layout
+                    transition={{ layout: { duration: 0.35, ease: "easeInOut" } }}
+                    className={`mt-3 whitespace-pre-line text-xs leading-6 text-slate-300 sm:mt-4 sm:text-sm sm:leading-7 sm:text-base ${openBlogs[blog.title] ? "" : "line-clamp-3 sm:line-clamp-4"}`}
+                  >
+                    {openBlogs[blog.title] ? blog.content.trim() : blog.preview}
+                  </Motion.p>
+                </Motion.div>
+
+                <button
+                  onClick={() =>
+                    setOpenBlogs((prev) => ({
+                      ...prev,
+                      [blog.title]: !prev[blog.title],
+                    }))
+                  }
+                  className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300 transition hover:text-cyan-200 sm:mt-6 sm:text-sm sm:tracking-[0.24em]"
+                >
+                  {openBlogs[blog.title] ? "Hide" : "Read More"}
+                </button>
+              </Motion.div>
+            ))}
+          </AnimatePresence>
+        </Motion.div>
+
+        {blogs.length > 4 && (
+          <div className="mt-12 hidden text-center sm:block">
+            <button
+              onClick={() => setShowAllBlogs(!showAllBlogs)}
+              className="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold text-white transition duration-300 hover:border-cyan-300/40 hover:bg-white/10"
+            >
+              {showAllBlogs ? "Show Less Blogs" : "Show More Blogs"}
+            </button>
+          </div>
+        )}
+      </Motion.div>
     </section>
   );
 }

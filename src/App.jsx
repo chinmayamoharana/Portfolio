@@ -1,9 +1,10 @@
 import "./App.css";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import GlobalEffects from "./components/GlobalEffects";
 
 const Home = lazy(() => import("./components/Home"));
 const About = lazy(() => import("./components/About"));
@@ -14,8 +15,6 @@ const Experience = lazy(() => import("./components/Experience"));
 const Education = lazy(() => import("./components/Education"));
 const Blogs = lazy(() => import("./components/Blogs"));
 const ProjectCaseStudy = lazy(() => import("./components/ProjectCaseStudy"));
-const ParticleBackground = lazy(() => import("./components/ParticleBackground"));
-const CursorGlow = lazy(() => import("./components/CursorGlow"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,10 +30,7 @@ export default function App() {
   return (
     <div className="app-shell text-black dark:text-white transition-colors duration-500">
       <ScrollToTop />
-      <Suspense fallback={null}>
-        <ParticleBackground />
-        <CursorGlow />
-      </Suspense>
+      <GlobalEffects />
       <div className="app-content">
         <Navbar />
 

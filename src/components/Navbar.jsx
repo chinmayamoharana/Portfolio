@@ -113,6 +113,8 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
               className="h-11 w-auto shrink-0 rounded object-contain drop-shadow-lg [image-rendering:auto] sm:h-12 lg:h-14"
+              loading="eager"
+              decoding="async"
             />
             <div className="hidden min-w-0 sm:block">
               <p className="truncate text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
@@ -170,10 +172,10 @@ export default function Navbar() {
           </div>
         </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] overflow-hidden bg-white/20">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 overflow-hidden bg-white/15">
         <div
           ref={barRef}
-          className="h-full w-0 rounded-r-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_12px_rgba(34,211,238,0.45)] will-change-[width]"
+          className="h-full w-0 rounded-r-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_18px_rgba(34,211,238,0.7)] will-change-[width]"
         />
       </div>
       </div>

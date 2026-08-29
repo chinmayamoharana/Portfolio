@@ -1,11 +1,13 @@
 import { motion as Motion, useMotionValue, useSpring } from "framer-motion";
 import { useState } from "react";
+import { useInteractiveMotion } from "./useMotionCapabilities";
 
 export default function MagneticButton({
   children,
   className = "",
   strength = 18,
 }) {
+  const interactiveMotionEnabled = useInteractiveMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
@@ -27,6 +29,10 @@ export default function MagneticButton({
     y.set(0);
     setActive(false);
   };
+
+  if (!interactiveMotionEnabled) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <Motion.div

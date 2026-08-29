@@ -26,40 +26,60 @@ export default function Experience() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-black/46 text-white">
-      <Motion.h2
-        initial={{ opacity: 0, y: 40 }}
+    <section className="relative overflow-hidden px-6 py-16 text-white sm:py-20 md:px-10 lg:py-24 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_30%),radial-gradient(circle_at_75%_15%,rgba(139,92,246,0.12),transparent_24%)]" />
+
+      <Motion.div
+        initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent"
+        viewport={{ once: true }}
+        className="relative mx-auto max-w-7xl"
       >
-        Professional Experience
-      </Motion.h2>
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">
+            Professional Experience
+          </p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">
+            Roles and project work that shaped how I build.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+            A compact timeline of internships and production-style responsibilities with a focus
+            on frontend delivery, API work, and real-world implementation.
+          </p>
+        </div>
 
-      <div className="max-w-5xl mx-auto space-y-10">
-        {experienceData.map((exp, index) => (
-          <Motion.div
-            key={index}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="p-8 bg-gray-900 rounded-2xl shadow-lg hover:shadow-blue-500/20 transition-all duration-300 border border-gray-800 hover:border-blue-500"
+        <div className="mt-12 grid gap-5">
+          {experienceData.map((exp, index) => (
+            <Motion.div
+              key={index}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            className="rounded-[2rem] border border-white/10 bg-black/45 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.28)] backdrop-blur-2xl sm:p-5 md:p-6"
           >
-            <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400">
-              {exp.role}
-            </h3>
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+                    {exp.company}
+                  </p>
+                  <h3 className="mt-3 text-xl font-bold text-white sm:text-2xl md:text-3xl">
+                    {exp.role}
+                  </h3>
+                </div>
+                <p className="text-sm uppercase tracking-[0.24em] text-slate-400">
+                  {exp.duration}
+                </p>
+              </div>
 
-            <p className="text-gray-400 font-medium mt-2">
-              {exp.company} | {exp.duration}
-            </p>
-
-            <p className="mt-4 text-gray-300 leading-relaxed text-lg">
-              {exp.description}
-            </p>
-          </Motion.div>
-        ))}
-      </div>
+              <p className="mt-4 text-sm leading-7 text-slate-300 sm:mt-5 sm:text-base md:text-lg">
+                {exp.description}
+              </p>
+            </Motion.div>
+          ))}
+        </div>
+      </Motion.div>
     </section>
   );
 }

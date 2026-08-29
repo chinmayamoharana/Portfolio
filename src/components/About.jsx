@@ -2,74 +2,66 @@ import { motion as Motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section className="py-24 px-6 md:px-16 bg-gradient-to-b from-black/52 via-gray-950/40 to-gray-900/54 text-white relative overflow-hidden">
-
-      {/* Background Glow */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500 opacity-20 blur-3xl rounded-full"></div>
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-500 opacity-20 blur-3xl rounded-full"></div>
+    <section className="relative overflow-hidden px-6 py-16 text-white sm:py-20 md:px-10 lg:py-24 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(99,102,241,0.12),transparent_28%)]" />
 
       <Motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.65 }}
         viewport={{ once: true }}
-        className="max-w-6xl mx-auto"
+        className="relative mx-auto max-w-7xl"
       >
-        {/* Title */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-            About Me
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">About</p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">
+            Professional overview, technical range, and what I care about in product work.
           </h2>
-          <p className="text-gray-400 mt-4 text-lg">
-            Professional Overview & Technical Expertise
+          <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+            I build responsive and scalable applications using React, MERN, Django, and Python.
+            The focus is always on clear UI, dependable backend structure, and a polished result.
           </p>
         </div>
 
-        {/* Glass Card */}
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-xl">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[2rem] border border-white/10 bg-black/45 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-2xl sm:p-6 md:p-8">
+            <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+              What I build
+            </p>
+            <p className="mt-4 text-sm leading-7 text-slate-300 sm:mt-5 sm:text-base md:text-lg">
+              I have developed academic and personal projects that combine clean UI design, secure
+              backend development, and efficient database integration. I am interested in work
+              where design quality and engineering discipline both matter.
+            </p>
 
-          <p className="max-w-4xl mx-auto mt-10 text-gray-300 text-lg md:text-xl leading-relaxed">
-            I am a motivated <span className="text-blue-400 font-semibold">Full Stack Developer  </span>
-            with strong foundations in modern web technologies. I build responsive and scalable
-            applications using <span className="text-cyan-400 font-semibold">React</span>,
-            <span className="text-green-400 font-semibold"> MERN Stack</span>,
-            <span className="text-yellow-400 font-semibold"> Django</span>, and
-            <span className="text-red-400 font-semibold"> Python</span>.
-
-            I have developed academic and personal projects demonstrating clean UI design,
-            secure backend development, and efficient database integration.
-            I am eager to contribute my technical skills in a professional environment
-            while continuously learning and growing as a developer.
-          </p>
-
-          {/* Tech Tags */}
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            {["React", "MERN", "Node.js", "Django", "Python", "MongoDB", "MySQL", "REST APIs"].map((tech, i) => (
-              <span
-                key={i}
-                className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-sm font-medium hover:bg-blue-500/20 transition-all duration-300"
-              >
-                {tech}
-              </span>
-            ))}
+            <div className="mt-8 flex flex-wrap gap-3">
+              {["React", "MERN", "Node.js", "Django", "Python", "MongoDB", "MySQL", "REST APIs"].map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-200 sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.22em]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Stats Section */}
-          <div className="grid md:grid-cols-3 gap-8 mt-14 text-center">
-            <div>
-              <h3 className="text-3xl font-bold text-blue-400">Fresher</h3>
-              <p className="text-gray-400 mt-2">Development Experience</p>
-            </div>
-
-            <div>
-              <h3 className="text-3xl font-bold text-purple-400">10+ Projects</h3>
-              <p className="text-gray-400 mt-2">Completed Applications</p>
-            </div>
-
-            <div>
-              <h3 className="text-3xl font-bold text-cyan-400">Full Stack</h3>
-              <p className="text-gray-400 mt-2">Frontend & Backend Expertise</p>
-            </div>
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1">
+            {[
+              { value: "Fresher", label: "Development experience" },
+              { value: "10+ Projects", label: "Completed applications" },
+              { value: "Full Stack", label: "Frontend and backend" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-[2rem] border border-white/10 bg-black/45 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-2xl sm:p-5"
+              >
+                <h3 className="text-2xl font-black text-white sm:text-3xl">{stat.value}</h3>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-slate-400 sm:text-sm sm:tracking-[0.24em]">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Motion.div>

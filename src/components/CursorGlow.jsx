@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const TRAIL_COUNT = 6;
+const TRAIL_COUNT = 4;
 const INTERACTIVE_SELECTOR =
   'a, button, [role="button"], input, textarea, select, label';
 
@@ -152,16 +152,11 @@ export default function CursorGlow() {
       setVisibility(true);
     };
 
-    const handleMouseOver = (event) => {
-      syncInteractiveState(event.target);
-    };
-
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mousedown", handleMouseDown, { passive: true });
     window.addEventListener("mouseup", handleMouseUp, { passive: true });
     document.documentElement.addEventListener("mouseenter", handleMouseEnter);
     document.documentElement.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     let frameId = 0;
 
@@ -233,7 +228,6 @@ export default function CursorGlow() {
       window.removeEventListener("mouseup", handleMouseUp);
       document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
       document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("mouseover", handleMouseOver);
     };
   }, [enabled]);
 

@@ -4,7 +4,7 @@ import { motion as Motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-black/56 via-gray-950/44 to-black/56 text-gray-300 pt-16 pb-8 px-6 md:px-12 overflow-hidden">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-black/56 via-gray-950/44 to-black/56 px-4 pb-8 pt-16 text-gray-300 sm:px-6 md:px-10 lg:px-12">
 
       {/* Top Glow Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 blur-3xl -z-10"></div>
@@ -14,7 +14,7 @@ export default function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10"
+        className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3"
       >
 
         {/* Branding */}
@@ -34,7 +34,7 @@ export default function Footer() {
             Quick Links
           </h3>
 
-          <ul className="grid grid-cols-2 gap-y-3 gap-x-6 justify-center">
+          <ul className="grid grid-cols-1 gap-x-6 gap-y-3 justify-center sm:grid-cols-2">
             {[
               { name: "Home", path: "/" },
               { name: "About", path: "/about" },
@@ -107,7 +107,7 @@ export default function Footer() {
       </Motion.div>
 
       {/* Divider */}
-      <div className="border-t border-white/10 mt-12 pt-6 text-center text-gray-500 text-sm">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} Chinmaya Moharana. All Rights Reserved.
       </div>
 

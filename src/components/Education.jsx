@@ -24,48 +24,50 @@ export default function Education() {
   ];
 
   return (
-    <section className="py-20 px-6 bg-black/46 text-white">
-      
-      <Motion.h2
-        initial={{ opacity: 0, y: 40 }}
+    <section className="relative overflow-hidden px-6 py-16 text-white sm:py-20 md:px-10 lg:py-24 lg:px-16">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_30%),radial-gradient(circle_at_85%_10%,rgba(59,130,246,0.12),transparent_24%)]" />
+
+      <Motion.div
+        initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center mb-16 
-        bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 
-        bg-clip-text text-transparent"
+        viewport={{ once: true }}
+        className="relative mx-auto max-w-7xl"
       >
-        Education
-      </Motion.h2>
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-cyan-300/70">Education</p>
+          <h2 className="mt-4 text-4xl font-black leading-tight text-white md:text-6xl">
+            The academic path behind the portfolio.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-slate-300 md:text-lg">
+            A simple summary of the institutions and milestones that led into full-stack work.
+          </p>
+        </div>
 
-      <div className="max-w-5xl mx-auto space-y-10">
-
-        {educationData.map((edu, index) => (
-          <Motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="p-8 bg-gray-900 rounded-2xl shadow-lg 
-            border border-gray-800 hover:border-blue-500 
-            transition-all duration-300"
-          >
-            <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400">
-              {edu.institute}
-            </h3>
-
-            <p className="text-gray-400 mt-2">
-              {edu.location} | {edu.duration}
-            </p>
-
-            <p className="text-gray-300 mt-3 text-lg">
-              {edu.degree}
-            </p>
-
-          </Motion.div>
-        ))}
-
-      </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {educationData.map((edu, index) => (
+            <Motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.12 }}
+              viewport={{ once: true }}
+              className="rounded-[2rem] border border-white/10 bg-black/45 p-4 shadow-[0_18px_55px_rgba(0,0,0,0.28)] backdrop-blur-2xl sm:p-5 md:p-6"
+            >
+              <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
+                {edu.duration}
+              </p>
+              <h3 className="mt-4 text-xl font-bold leading-tight text-white sm:text-2xl">
+                {edu.institute}
+              </h3>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-slate-400 sm:text-sm sm:tracking-[0.24em]">
+                {edu.location}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-slate-300 sm:mt-4 sm:text-base">{edu.degree}</p>
+            </Motion.div>
+          ))}
+        </div>
+      </Motion.div>
     </section>
   );
 }

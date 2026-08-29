@@ -5,12 +5,14 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { useInteractiveMotion } from "./useMotionCapabilities";
 
 export default function TiltCard({
   children,
   className = "",
   intensity = 12,
 }) {
+  const interactiveMotionEnabled = useInteractiveMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -41,6 +43,10 @@ export default function TiltCard({
     mouseX.set(0);
     mouseY.set(0);
   };
+
+  if (!interactiveMotionEnabled) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <Motion.div

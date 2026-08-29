@@ -5,36 +5,36 @@ import * as THREE from "three";
 function getParticleConfig(width) {
   if (width < 640) {
     return {
-      count: 34,
-      connectionDistance: 1.4,
-      interactionRadius: 1.25,
-      pointSize: 0.042,
+      count: 24,
+      connectionDistance: 1.22,
+      interactionRadius: 1.08,
+      pointSize: 0.038,
       pointOpacity: 0.98,
-      lineOpacity: 0.34,
-      drift: 0.3,
+      lineOpacity: 0.28,
+      drift: 0.24,
     };
   }
 
   if (width < 1024) {
     return {
-      count: 52,
-      connectionDistance: 1.55,
-      interactionRadius: 1.45,
-      pointSize: 0.046,
-      pointOpacity: 0.96,
-      lineOpacity: 0.32,
-      drift: 0.36,
+      count: 38,
+      connectionDistance: 1.38,
+      interactionRadius: 1.24,
+      pointSize: 0.042,
+      pointOpacity: 0.95,
+      lineOpacity: 0.26,
+      drift: 0.3,
     };
   }
 
   return {
-    count: 72,
-    connectionDistance: 1.75,
-    interactionRadius: 1.7,
-    pointSize: 0.05,
-    pointOpacity: 0.94,
-    lineOpacity: 0.3,
-    drift: 0.44,
+    count: 56,
+    connectionDistance: 1.58,
+    interactionRadius: 1.52,
+    pointSize: 0.046,
+    pointOpacity: 0.93,
+    lineOpacity: 0.25,
+    drift: 0.36,
   };
 }
 
@@ -309,9 +309,9 @@ export default function ParticleBackground() {
     <div className="particle-background" aria-hidden="true">
       <div className="particle-background__veil" />
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         camera={{ position: [0, 0, 6.4], fov: 48 }}
-        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
       >
         <fog attach="fog" args={["#020617", 9, 18]} />
         <ParticleNetwork {...config} />
