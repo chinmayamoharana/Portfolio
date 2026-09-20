@@ -142,7 +142,7 @@ export default function ProjectCaseStudy() {
               <p className="text-sm uppercase tracking-[0.3em] text-cyan-300/70">
                 {entry.title}
               </p>
-              <p className="mt-3 text-xs leading-6 text-slate-300 sm:mt-4 sm:text-sm sm:leading-8 md:text-base line-clamp-2 sm:line-clamp-3">
+              <p className="mt-3 text-xs leading-6 text-slate-300 sm:mt-4 sm:text-sm sm:leading-8 md:text-base">
                 {entry.text}
               </p>
             </Motion.article>
@@ -205,7 +205,7 @@ export default function ProjectCaseStudy() {
                   </div>
                   <div className="p-4 sm:p-6">
                     <h3 className="text-xl font-bold text-white sm:text-2xl">{entry.title}</h3>
-                    <p className="mt-3 text-xs leading-6 text-slate-300 sm:mt-4 sm:text-sm sm:leading-7 sm:text-base line-clamp-2 sm:line-clamp-3">
+                    <p className="mt-3 text-xs leading-6 text-slate-300 sm:mt-4 sm:text-sm sm:leading-7 sm:text-base">
                       {entry.description}
                     </p>
                     <Link

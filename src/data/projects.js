@@ -1,7 +1,7 @@
 export const projects = [
   {
     slug: "job-portal",
-    img: "/project1.png",
+    img: "/project_job_portal.jpg",
     title: "Job Portal",
     tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     stackLabel: "MERN Stack (MongoDB, Express, React, Node.js)",
@@ -30,7 +30,7 @@ export const projects = [
   },
   {
     slug: "finance-dashboard-system",
-    img: "/image.png",
+    img: "/project_finance_dashboard.jpg",
     title: "Finance Dashboard System",
     tech: [
       "React",
@@ -69,7 +69,7 @@ export const projects = [
   },
   {
     slug: "url-shortener",
-    img: "/project2.png",
+    img: "/project_pdf_word.jpg",
     title: "URL Shortener",
     tech: ["React", "Node.js", "Express", "MongoDB"],
     stackLabel: "MERN Stack (MongoDB, Express, React, Node.js)",
@@ -98,7 +98,7 @@ export const projects = [
   },
   {
     slug: "pdf-word-converter",
-    img: "/project3.png",
+    img: "/project_pdf_word.jpg",
     title: "PDF ↔ Word Converter",
     tech: ["React", "Django", "Python", "Django REST Framework"],
     stackLabel: "Django + React + Python",
@@ -127,7 +127,7 @@ export const projects = [
   },
   {
     slug: "ecommerce-website",
-    img: "/project4.png",
+    img: "/project_ecommerce.jpg",
     title: "E-commerce Website",
     tech: ["Django", "Python", "MySQL", "HTML", "CSS"],
     stackLabel: "Django + Python",
@@ -156,7 +156,7 @@ export const projects = [
   },
   {
     slug: "cafe-management-system",
-    img: "/project5.png",
+    img: "/project_cafe_management.jpg",
     title: "Cafe Management System",
     tech: ["React", "PHP", "MySQL", "REST APIs"],
     stackLabel: "React + PHP + MySQL",
@@ -185,7 +185,7 @@ export const projects = [
   },
   {
     slug: "ats-resume-checker",
-    img: "/project6.png",
+    img: "/project_ats_resume.jpg",
     title: "ATS Resume Checker",
     tech: ["React", "Django", "Python", "NLP-style keyword analysis"],
     stackLabel: "Django + React + Python",
@@ -214,7 +214,7 @@ export const projects = [
   },
   {
     slug: "kanban-board-application",
-    img: "/project7.png",
+    img: "/project_kanban_board.jpg",
     title: "Kanban Board Application",
     tech: ["React", "Django REST Framework", "WebSockets", "Tailwind CSS", "JWT"],
     stackLabel: "React.js, Django REST Framework, WebSockets, Tailwind CSS",
