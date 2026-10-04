@@ -213,6 +213,45 @@ export const projects = [
     ],
   },
   {
+    slug: "lets-chat",
+    img: "/project_lets_chat.svg",
+    title: "Let's Chat",
+    tech: [
+      "React",
+      "Django REST Framework",
+      "Django Channels",
+      "WebSockets",
+      "Redis",
+      "MySQL",
+      "JWT",
+      "Tailwind CSS",
+    ],
+    stackLabel:
+      "React, Django REST Framework, Django Channels, Daphne, MySQL, Redis, Tailwind CSS",
+    github: "https://github.com/chinmayamoharana/let-s-chat",
+    accent: "from-violet-500 to-cyan-400",
+    description:
+      "Real-time private and group chat with OTP registration, JWT authentication, presence, read receipts, typing indicators, and file sharing.",
+    summary:
+      "A real-time messaging application built for private conversations and group communication, with WebSocket-powered chat and delivery updates.",
+    problem:
+      "Messaging apps need to keep conversations responsive while handling authentication, group membership, presence, and message status across connected users.",
+    solution:
+      "I built a React chat client backed by Django REST Framework and Django Channels. The application supports one-to-one and group messaging, OTP-based registration, JWT authentication, live typing and presence updates, delivered and seen states, image and file sharing, and message forwarding and deletion.",
+    challenges: [
+      "Coordinating live message and typing events through WebSockets.",
+      "Keeping online presence, last-seen information, and message status useful across conversations.",
+      "Supporting secure authentication alongside group chat and file-sharing workflows.",
+    ],
+    result:
+      "The project brings real-time communication and production-focused backend configuration together, using MySQL for application data and Redis for the Channels layer, with static and media file handling and environment-based deployment settings.",
+    metrics: [
+      { label: "Conversations", value: "Private + group" },
+      { label: "Realtime", value: "Django Channels + Redis" },
+      { label: "Authentication", value: "JWT + OTP registration" },
+    ],
+  },
+  {
     slug: "kanban-board-application",
     img: "/project_kanban_board.jpg",
     title: "Kanban Board Application",
